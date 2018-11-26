@@ -1,0 +1,95 @@
+<application>
+  <component name="ProjectJdkTable">
+    <jdk version="2">
+      <name value="Python 3.6 (Emulator36)" />
+      <type value="Python SDK" />
+      <version value="Python 3.6.6" />
+      <homePath value="D:\Projects\Emulator36\venv\Scripts\python.exe" />
+      <roots>
+        <classPath>
+          <root type="composite">
+            <root url="file://C:/Program Files (x86)/Python36-32/DLLs" type="simple" />
+            <root url="file://C:/Program Files (x86)/Python36-32/Lib" type="simple" />
+            <root url="file://C:/Program Files (x86)/Python36-32" type="simple" />
+            <root url="file://D:/Projects/Emulator36/venv" type="simple" />
+            <root url="file://D:/Projects/Emulator36/venv/Lib/site-packages" type="simple" />
+            <root url="jar://D:/Projects/Emulator36/venv/Lib/site-packages/setuptools-39.1.0-py3.6.egg!/" type="simple" />
+            <root url="file://D:/Projects/Emulator36/venv/Lib/site-packages/pip-10.0.1-py3.6.egg" type="simple" />
+            <root url="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/-112907612" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.6" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.5" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.4" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/2and3" type="simple" />
+          </root>
+        </classPath>
+        <sourcePath>
+          <root type="composite" />
+        </sourcePath>
+      </roots>
+      <additional ASSOCIATED_PROJECT_PATH="D:/Projects/Emulator36" />
+    </jdk>
+    <jdk version="2">
+      <name value="Python 3.7 (venv) (1)" />
+      <type value="Python SDK" />
+      <version value="Python 3.7.0" />
+      <homePath value="C:\Users\vsrya\venv\Scripts\python.exe" />
+      <roots>
+        <classPath>
+          <root type="composite">
+            <root url="file://C:/Program Files/Python37/DLLs" type="simple" />
+            <root url="file://C:/Program Files/Python37/Lib" type="simple" />
+            <root url="file://C:/Program Files/Python37" type="simple" />
+            <root url="file://$USER_HOME$/venv" type="simple" />
+            <root url="file://$USER_HOME$/venv/Lib/site-packages" type="simple" />
+            <root url="jar://$USER_HOME$/venv/Lib/site-packages/setuptools-39.1.0-py3.7.egg!/" type="simple" />
+            <root url="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/275910990" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/2and3" type="simple" />
+          </root>
+        </classPath>
+        <sourcePath>
+          <root type="composite" />
+        </sourcePath>
+      </roots>
+      <additional />
+    </jdk>
+    <jdk version="2">
+      <name value="Python 3.7 (QuadroEmulator)" />
+      <type value="Python SDK" />
+      <version value="Python 3.7.0" />
+      <homePath value="D:\Projects\QuadroEmulator\venv\Scripts\python.exe" />
+      <roots>
+        <classPath>
+          <root type="composite">
+            <root url="file://C:/Program Files/Python37/DLLs" type="simple" />
+            <root url="file://C:/Program Files/Python37/Lib" type="simple" />
+            <root url="file://C:/Program Files/Python37" type="simple" />
+            <root url="file://D:/Projects/QuadroEmulator/venv" type="simple" />
+            <root url="file://D:/Projects/QuadroEmulator/venv/Lib/site-packages" type="simple" />
+            <root url="file://D:/Projects/QuadroEmulator/venv/Lib/site-packages/win32" type="simple" />
+            <root url="file://D:/Projects/QuadroEmulator/venv/Lib/site-packages/win32/lib" type="simple" />
+            <root url="file://D:/Projects/QuadroEmulator/venv/Lib/site-packages/pythonwin" type="simple" />
+            <root url="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-2107126171" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/2and3" type="simple" />
+          </root>
+        </classPath>
+        <sourcePath>
+          <root type="composite" />
+        </sourcePath>
+      </roots>
+      <additional ASSOCIATED_PROJECT_PATH="D:/Projects/QuadroEmulator" />
+    </jdk>
+  </component>
+</application>
