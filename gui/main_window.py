@@ -59,6 +59,8 @@ class MainWindow(QMainWindow):
                 save_as_act.setEnabled(True)
             else:
                 self.copter_settings = None
+                self.sim_settings = None
+                self.simulation = None
                 self._disable_toolbar()
             self.statusBar().showMessage('Ready')
             self.show()
@@ -415,6 +417,8 @@ class MainWindow(QMainWindow):
         return
 
     def closeEvent(self, *args, **kwargs):
+        if not self.simulation:
+            return
         if self.simulation.simulation_running:
             save_msg = "Simulation is running.\n" \
                        "Do you want to stop simulation and quit?"

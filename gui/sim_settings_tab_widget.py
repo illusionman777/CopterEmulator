@@ -105,15 +105,13 @@ class SimSettingsTabWidget(QWidget):
         self.settings.save()
         save_act = self.findChild(QAction, 'save_act')
         save_act.setEnabled(False)
+        main_window = self.parentWidget()
+        copter3d_w = main_window.simulation.findChildren(Copter3DWidget)[0]
+        copter3d_w.set_settings()
         self.settings_changed = False
         return
 
     def closeEvent(self, *args, **kwargs):
         if self.isVisible() and self.settings_changed:
-            self.settings.save()
-            save_act = self.findChild(QAction, 'save_act')
-            save_act.setEnabled(False)
-            main_window = self.parentWidget()
-            copter3d_w = main_window.simulation.findChildren(Copter3DWidget)[0]
-            copter3d_w.set_settings()
+            self._save_settings()
         return
