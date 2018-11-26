@@ -2,7 +2,7 @@ import time
 import threading
 
 
-def graphics_thread(widget_3d, plotter, settings, resieve_conn, stop_event,
+def graphics_thread(widget_3d, plotter, settings, receive_conn, stop_event,
                     running_event, graphics_event, update_event, em_stopped_event):
     sleep_event = threading.Event()
     sleep_event.clear()
@@ -18,7 +18,7 @@ def graphics_thread(widget_3d, plotter, settings, resieve_conn, stop_event,
         if stop_event.is_set():
             running = False
             continue
-        state = resieve_conn.recv()
+        state = receive_conn.recv()
         start_time = time.time()
         state.to_array()
         if settings.view3d_enabled:

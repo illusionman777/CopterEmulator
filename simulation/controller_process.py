@@ -1,7 +1,7 @@
 import random
 
 
-def controller_process(copter, settings, resieve_conn, emulator_conn,
+def controller_process(copter, settings, receive_conn, emulator_conn,
                        stop_event, running_event, em_stopped_event, contr_stopped_event):
     """ This variables contains all parameters, that controller can use:
             settings.dest_pos                    copter destination point (x, y, z), [m]
@@ -19,7 +19,7 @@ def controller_process(copter, settings, resieve_conn, emulator_conn,
         Minimum pwm value is 0, maximum pwm - copter.engines[i].max_pwm """
 
     pwm_current = list()
-    state = resieve_conn.recv()
+    state = receive_conn.recv()
     for engine_state in state.engines_state:
         pwm_current.append(engine_state.current_pwm)
     emulator_conn.send(pwm_current)
@@ -31,8 +31,8 @@ def controller_process(copter, settings, resieve_conn, emulator_conn,
             running = False
             continue
         random.seed()
-        fuselage_state = resieve_conn.recv()
-        t_cur = resieve_conn.recv()
+        fuselage_state = receive_conn.recv()
+        t_cur = receive_conn.recv()
 
         # Controller function here
 

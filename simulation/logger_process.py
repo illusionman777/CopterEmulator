@@ -1,7 +1,7 @@
 from logger import Logger
 
 
-def logger_process(copter, settings, resieve_conn, stop_event, running_event, em_stopped_event):
+def logger_process(copter, settings, receive_conn, stop_event, running_event, em_stopped_event):
     logger = Logger(copter, settings)
     running = True
     while running:
@@ -10,7 +10,7 @@ def logger_process(copter, settings, resieve_conn, stop_event, running_event, em
         if stop_event.is_set():
             running = False
             continue
-        state = resieve_conn.recv()
+        state = receive_conn.recv()
         logger.copter_state = state
         logger.write_log()
     logger.compose_log_file()

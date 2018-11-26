@@ -7,7 +7,6 @@ import random
 import math
 import os
 import sys
-import time
 
 __settings_file__ = os.path.dirname(os.path.realpath(sys.argv[0])) + \
                     os.path.sep + 'settings.json'
@@ -27,22 +26,23 @@ class Environment:
         self.state = None
         self.logger_proc = None
         self.controller_period = 1.0
-
         self.logger_out, self.logger_in = multiprocessing.Pipe(duplex=False)
 
-        self.reset(0)
+        self.reset(0, log_enabled=False)
         return
 
-    def reset(self, num_of_simulation):
+    def reset(self, num_of_simulation, log_enabled=True):
         if self.logger_proc:
-            self.logger_in.send("stop")
-            self.logger_proc.join()
+            if self.logger_proc.is_alive():
+                self.logger_in.send("stop")
+                self.logger_proc.join()
             self.logger_in.close()
             self.logger_out, self.logger_in = multiprocessing.Pipe(duplex=False)
         self.settings = json_serializer.readfile(__settings_file__)
         self.controller_period = 1.0 / self.settings.controller_freq
         self.copter = json_serializer.readfile(self.settings.current_copter)
         self.settings.log_file = __logs_dir__ + self.copter.name + '_{0}.log'.format(num_of_simulation)
+        self.settings.log_enabled = log_enabled
 
         self._random_start_state()
 
@@ -82,8 +82,9 @@ class Environment:
                 self.copter, self.settings, self.logger_out,
             )
         )
-        self.logger_proc.start()
-        self.logger_in.send(self.state)
+        if self.settings.log_enabled:
+            self.logger_proc.start()
+            self.logger_in.send(self.state)
         return
 
     def _random_start_state(self):
@@ -121,7 +122,8 @@ class Environment:
     def step(self, pwm):
         end_time = self.state.t + self.controller_period
         self.emulator.calculate_state(pwm, end_time, self.state)
-        self.logger_in.send(self.state)
+        if self.settings.log_enabled:
+            self.logger_in.send(self.state)
         observation = [
             self.state.fuselage_state.pos_v[0] - self.settings.dest_pos[0],
             self.state.fuselage_state.pos_v[1] - self.settings.dest_pos[1],

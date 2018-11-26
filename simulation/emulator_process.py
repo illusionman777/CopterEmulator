@@ -2,11 +2,11 @@ import time
 import c_emulator
 
 
-def emulator_process(copter, settings, resieve_conn, controller_conn, logger_conn, graphics_conn,
+def emulator_process(copter, settings, receive_conn, controller_conn, logger_conn, graphics_conn,
                      stop_event, running_event, graphics_event, em_stopped_event, contr_stopped_event):
     emulator_c = c_emulator.cEmulator(copter, settings.dt)
     controller_period = 1 / settings.controller_freq
-    state = resieve_conn.recv()
+    state = receive_conn.recv()
     controller_conn.send(state.fuselage_state)
     controller_conn.send(state.t)
     # running_time = time.time()
@@ -19,7 +19,7 @@ def emulator_process(copter, settings, resieve_conn, controller_conn, logger_con
         if stop_event.is_set():
             running = False
             continue
-        input_pwm = resieve_conn.recv()
+        input_pwm = receive_conn.recv()
         start_time = time.time()
 
         for i in range(len(state.engines_state)):

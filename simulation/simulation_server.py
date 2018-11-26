@@ -115,7 +115,6 @@ class SimulationServer:
             self.graphics_thread.start()
         self.stop_signal.start()
         self.settings.start_state.to_list()
-        # self.logger_in.send(self.settings.start_state)
         self.emulator_in.send(self.settings.start_state)
         self.controller_in.send(self.settings.start_state)
         self.settings.start_state.to_array()
