@@ -1,0 +1,289 @@
+{
+    "<class 'gui.settings.Settings'>": {
+        "_current_copter": "D:/Projects/QuadroEmulator/copters/Test.json",
+        "controller_freq": 50,
+        "dest_pos": {
+            "<class 'numpy.ndarray'>": [
+                0.1,
+                0.2,
+                0.2
+            ]
+        },
+        "dest_q": {
+            "<class 'pyquaternion.quaternion.Quaternion'>": [
+                1.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        "dt": 0.001,
+        "graphics_enabled": true,
+        "ground_collision": false,
+        "ground_level": 0.0,
+        "hover_mod_on_start": false,
+        "log_enabled": true,
+        "log_file": "D:\\Projects\\QuadroEmulator\\logs\\Test_log.log",
+        "log_inf": false,
+        "log_time": 600,
+        "real_time_syncr": true,
+        "start_state": {
+            "<class 'logger.copter_state.CopterState'>": {
+                "engines_state": {
+                    "<class 'list'>": [
+                        {
+                            "<class 'logger.engine_props.EngineProps'>": {
+                                "acel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "angular_acel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "angular_vel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        34.48357100324399
+                                    ]
+                                },
+                                "current_pow": 110.0,
+                                "current_pwm": 1024,
+                                "pos_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "rot_q": {
+                                    "<class 'numpy.ndarray'>": [
+                                        1.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "rotation_dir": "counterclockwise",
+                                "velocity_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "<class 'logger.engine_props.EngineProps'>": {
+                                "acel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "angular_acel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "angular_vel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        34.48357100324399
+                                    ]
+                                },
+                                "current_pow": 110.0,
+                                "current_pwm": 1024,
+                                "pos_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "rot_q": {
+                                    "<class 'numpy.ndarray'>": [
+                                        1.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "rotation_dir": "clockwise",
+                                "velocity_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "<class 'logger.engine_props.EngineProps'>": {
+                                "acel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "angular_acel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "angular_vel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        34.48357100324399
+                                    ]
+                                },
+                                "current_pow": 110.0,
+                                "current_pwm": 1024,
+                                "pos_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "rot_q": {
+                                    "<class 'numpy.ndarray'>": [
+                                        1.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "rotation_dir": "counterclockwise",
+                                "velocity_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "<class 'logger.engine_props.EngineProps'>": {
+                                "acel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "angular_acel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "angular_vel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        34.48357100324399
+                                    ]
+                                },
+                                "current_pow": 110.0,
+                                "current_pwm": 1024,
+                                "pos_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "rot_q": {
+                                    "<class 'numpy.ndarray'>": [
+                                        1.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "rotation_dir": "clockwise",
+                                "velocity_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                "fuselage_state": {
+                    "<class 'logger.fuselage_props.FuselageProps'>": {
+                        "acel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                1.291958999833565e-29,
+                                3.768213546958178e-30,
+                                23.33279850437602
+                            ]
+                        },
+                        "angular_acel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                3.2488380527216714e-16,
+                                2.5990707864063675e-15,
+                                1.0879436053429449e-16
+                            ]
+                        },
+                        "angular_vel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "pos_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                100.0
+                            ]
+                        },
+                        "rot_q": {
+                            "<class 'numpy.ndarray'>": [
+                                1.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "velocity_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                },
+                "t": 0
+            }
+        },
+        "vert_syncr": true,
+        "view3d_enabled": true
+    }
+}

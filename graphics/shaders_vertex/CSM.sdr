@@ -1,0 +1,35 @@
+#version 430
+const uint numOfCascades = uint(5);
+
+layout(location = 0) in vec3 position;
+layout(location = 1) in vec3 normal;
+
+out vec3 v2fPosition;
+out vec3 v2fNormal;
+out vec3 worldPosition;
+out vec3 cameraLightDirection;
+out vec4 lightSpacePos[numOfCascades];
+out float clipSpacePosZ;
+
+uniform mat4 mvpMatrix;
+uniform mat4 mvMatrix;
+uniform mat4 vMatrix;
+uniform mat4 mMatrix;
+uniform mat4 lightMVP[numOfCascades];
+uniform vec3 lightDirection;
+
+void main(void)
+{
+	vec4 pos = vec4(position, 1.0);
+	gl_Position = mvpMatrix * pos;
+
+	clipSpacePosZ = gl_Position.z;
+	v2fPosition = (mvMatrix * pos).xyz;
+	v2fNormal   = normalize((mvMatrix * vec4(normal,0.0)).xyz);
+	worldPosition = (mMatrix * pos).xyz;
+	cameraLightDirection = normalize((vMatrix * vec4(lightDirection, 0.0f)).xyz);
+	for (uint i = uint(0) ; i < numOfCascades ; i++)
+	{
+        lightSpacePos[i] = lightMVP[i] * pos;
+    }
+}
