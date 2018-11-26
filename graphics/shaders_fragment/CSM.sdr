@@ -1,0 +1,136 @@
+#version 430
+
+const uint numOfCascades = uint(5);
+//Vertex to fragment values
+in vec3 v2fPosition;
+in vec3 v2fNormal;
+in vec3 worldPosition;
+in vec3 cameraLightDirection;
+in vec4 lightSpacePos[numOfCascades];
+in float clipSpacePosZ;
+
+const vec3 eyePos = vec3(0.0f,0.0f,0.0f);
+
+out vec4 color;
+
+uniform sampler2DArrayShadow shadowTexArray;
+uniform float cascadedSplits[numOfCascades];
+uniform vec3 materialDiffuseColor;
+uniform vec3 materialAmbientColor;
+uniform vec3 materialSpecularColor;
+uniform vec3 lightColor;
+uniform vec3 lightDirection;
+uniform float lightPower;
+uniform float specularPower;
+
+const vec2 poissonDisk[16] = vec2[](
+   vec2( -0.94201624, -0.39906216 ),
+   vec2( 0.94558609, -0.76890725 ),
+   vec2( -0.094184101, -0.92938870 ),
+   vec2( 0.34495938, 0.29387760 ),
+   vec2( -0.91588581, 0.45771432 ),
+   vec2( -0.81544232, -0.87912464 ),
+   vec2( -0.38277543, 0.27676845 ),
+   vec2( 0.97484398, 0.75648379 ),
+   vec2( 0.44323325, -0.97511554 ),
+   vec2( 0.53742981, -0.47373420 ),
+   vec2( -0.26496911, -0.41893023 ),
+   vec2( 0.79197514, 0.19090188 ),
+   vec2( -0.24188840, 0.99706507 ),
+   vec2( -0.81409955, 0.91437590 ),
+   vec2( 0.19984126, 0.78641367 ),
+   vec2( 0.14383161, -0.14100790 )
+);
+
+float random(vec3 seed, int i)
+{
+	vec4 seed4 = vec4(seed, i);
+	float dot_product = dot(seed4, vec4(12.9898,78.233,45.164,94.673));
+	return fract(sin(dot_product) * 43758.5453);
+}
+
+float readShadowMap(vec4 shadowPosition, uint cascadeIdx, float cosTheta)
+{
+	vec3 projCoords = shadowPosition.xyz / shadowPosition.w;
+
+	//Remap the -1 to 1 NDC to the range of 0 to 1
+	projCoords = projCoords * 0.5f + 0.5f;
+
+	// Get depth of current fragment from light's perspective
+    float currentDepth = projCoords.z;
+
+	projCoords.z = cascadeIdx;
+
+	// Fixed bias, or...
+	float bias = 0.0005;
+
+	// ...variable bias
+	//float bias = 0.0005 * tan(acos(cosTheta));
+	//bias = clamp(bias, 0, 0.0005);
+
+	float shadow = 1.0f;
+
+	// Sample the shadow map 4 times
+	for (int i = 0; i < 4; i++)
+	{
+		//    A random sample, based on the pixel's position in world space.
+		//    The position is rounded to the millimeter to avoid too much aliasing
+		int index = int(16.0 * random(floor(worldPosition * 1000.0), i)) % 16;
+
+		// being fully in the shadow will eat up 4*0.2 = 0.8
+		// 0.2 potentially remain, which is quite dark.
+		vec3 sampleCoords = projCoords;
+		sampleCoords.xy += poissonDisk[index] / 700.0 / 10;
+		shadow -= 0.2 * (
+	        1.0 - texture(
+		        shadowTexArray, vec4(sampleCoords, currentDepth - bias)
+		    )
+	    );
+	}
+	return shadow;
+}
+
+void main()
+{
+    ///Light
+    vec3 surfaceToCamera  = normalize(eyePos - v2fPosition);
+	vec3 negatedLightDirection = cameraLightDirection * -1.0f;
+
+	///Diffuse
+	float diffuseCoefficient = clamp(dot(v2fNormal, negatedLightDirection), 0, 1);
+    vec3 diffuseColor = diffuseCoefficient * materialDiffuseColor * lightColor;
+
+	///Specular
+	vec3 reflectionVector = normalize(reflect(cameraLightDirection, v2fNormal));
+	float cosAngle = clamp(dot(surfaceToCamera, reflectionVector), 0, 1);
+	float specularCoefficient = pow(cosAngle, 200.0f);
+	vec3 specularColor = specularCoefficient * specularPower * lightColor * materialSpecularColor;
+
+	///Shadow
+	uint cascadeIdx = uint(0);
+	vec4 fragmentShadowPosition = vec4(0.0f,0.0f,0.0f,0.0f);
+
+	for(uint i = uint(0); i < numOfCascades; ++i)
+	{
+		if(clipSpacePosZ < cascadedSplits[i])
+		{
+			fragmentShadowPosition = lightSpacePos[i];
+			cascadeIdx = i;
+
+			/*if (i == uint(0))
+                 color = vec4(0.1, 0.0, 0.0, 0.0);
+            else if (i == uint(1))
+                 color = vec4(0.0, 0.1, 0.0, 0.0);
+            else if (i == uint(2))
+                 color = vec4(0.0, 0.0, 0.1, 0.0);
+            else if (i == uint(3))
+                 color = vec4(0.1, 0.1, 0.0, 0.0);*/
+
+			break;
+		}
+	}
+	float shadowFactor = readShadowMap(fragmentShadowPosition, cascadeIdx, diffuseCoefficient);
+
+    //color += vec4((materialAmbientColor + lightPower * shadowFactor * (diffuseColor + specularColor)), 0.0f);
+    color = vec4((materialAmbientColor + lightPower * shadowFactor * (diffuseColor + specularColor)), 1.0f);
+}
