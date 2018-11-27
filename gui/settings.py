@@ -7,24 +7,6 @@ import numpy as py
 
 
 class Settings:
-    _current_copter = str
-    log_file = str
-    graphics_enabled = bool
-    view3d_enabled = bool
-    ground_collision = bool
-    ground_level = float
-    dest_pos = py.array
-    dest_q = Quaternion
-    dt = float
-    log_enabled = bool
-    log_inf = bool
-    log_time = int
-    real_time_syncr = bool
-    controller_freq = int
-    vert_syncr = bool
-    hover_mod_on_start = bool
-    start_state = CopterState
-
     def __init__(self):
         self.current_copter = 'None'
         self.log_file = 'None'
