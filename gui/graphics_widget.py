@@ -3,14 +3,14 @@ from PyQt5.QtWidgets import QTabWidget, QWidget, QToolBar, \
     QLabel, QGridLayout, QScrollArea, QFileDialog
 from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import QSize, pyqtSignal
-from simulation import SimulationServer
+from CopterEmulator.simulation import SimulationServer
 from . import main_window, log_window
 from .plot_widget import PlotWidget
 from .settings import Settings
 from .copter3d_widget import Copter3DWidget
-import physicalmodel as model
+import CopterEmulator.physicalmodel as model
 import pyqtgraph as pg
-import graphics
+import CopterEmulator.graphics as graphics
 import os
 import multiprocessing
 

@@ -5,7 +5,7 @@ from PyQt5.QtGui import QFont, QDoubleValidator, QPalette, QColor, QIntValidator
 from PyQt5.QtCore import Qt, pyqtSignal
 from .settings import Settings
 from math import cos, sin, pi, sqrt, acos
-import physicalmodel as model
+import CopterEmulator.physicalmodel as model
 import numpy
 
 _g = 9.8062

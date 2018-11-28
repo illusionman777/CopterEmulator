@@ -1,7 +1,7 @@
 from pyquaternion import Quaternion
-from logger import CopterState
+from CopterEmulator.logger import CopterState
 from . import main_window
-import json_serializer
+import CopterEmulator.json_serializer as json_serializer
 import os
 import numpy as py
 

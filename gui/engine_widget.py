@@ -6,7 +6,7 @@ from PyQt5.QtGui import QFont, QDoubleValidator, QPixmap, \
 from PyQt5.QtCore import Qt, pyqtSignal
 from . import main_window
 
-import physicalmodel as model
+import CopterEmulator.physicalmodel as model
 import copy
 
 

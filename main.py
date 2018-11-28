@@ -1,5 +1,5 @@
 import sys
-from gui import main_window
+from CopterEmulator.gui import main_window
 from PyQt5.QtWidgets import QApplication
 
 sys._excepthook = sys.excepthook

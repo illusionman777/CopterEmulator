@@ -1,5 +1,5 @@
 import numpy as py
-import physicalmodel as model
+import CopterEmulator.physicalmodel as model
 
 
 class PlotCalculator:

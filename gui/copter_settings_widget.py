@@ -4,7 +4,7 @@ from PyQt5.QtGui import QFont, QColor, QPalette
 from .fuselage_widget import FuselageWidget
 from .engine_widget import EngineWidget
 
-import physicalmodel as model
+import CopterEmulator.physicalmodel as model
 
 
 class CopterSettingsWidget(QWidget):
