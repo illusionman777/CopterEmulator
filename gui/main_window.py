@@ -1,3 +1,4 @@
+import CopterEmulator
 from PyQt5.QtWidgets import QMainWindow, QDesktopWidget, QAction, \
                             QMenuBar, QToolBar, QFileDialog, QMessageBox, QMenu
 from PyQt5.QtGui import QIcon
@@ -9,18 +10,20 @@ from .sim_settings_tab_widget import SimSettingsTabWidget
 from .graphics_widget import GraphicsWidget
 from .copter3d_widget import Copter3DWidget
 
-import sys
 import os
-import json_serializer
-import physicalmodel as model
+import CopterEmulator.json_serializer as json_serializer
+import CopterEmulator.physicalmodel as model
 
 __icon_dir__ = os.path.dirname(os.path.realpath(__file__)) + \
                    os.path.sep + 'icons' + os.path.sep
-__copter_dir__ = os.path.dirname(os.path.realpath(sys.argv[0])) + \
+__copter_dir__ = os.path.dirname(CopterEmulator.__path__[0]) + \
+                 os.path.sep + 'CopterEmulator' + \
                  os.path.sep + 'copters' + os.path.sep
-__logs_dir__ = os.path.dirname(os.path.realpath(sys.argv[0])) + \
+__logs_dir__ = os.path.dirname(CopterEmulator.__path__[0]) + \
+               os.path.sep + 'CopterEmulator' + \
                os.path.sep + 'logs' + os.path.sep
-__settings_path__ = os.path.dirname(os.path.realpath(sys.argv[0])) + \
+__settings_path__ = os.path.dirname(CopterEmulator.__path__[0]) + \
+                    os.path.sep + 'CopterEmulator' + \
                     os.path.sep + 'settings.json'
 
 

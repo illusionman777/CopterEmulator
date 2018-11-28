@@ -1,16 +1,20 @@
+import CopterEmulator
 from .controller_process import controller_process
 from .emulator_process import emulator_process
 from .logger_process import logger_process
 from .graphics_thread import graphics_thread
 from .stop_signal import stop_signal
-from physicalmodel import Copter
+from CopterEmulator.physicalmodel import Copter
 import multiprocessing
 import threading
-import json_serializer
-import c_emulator
+import CopterEmulator.json_serializer as json_serializer
+import CopterEmulator.c_emulator as c_emulator
 import copy
+import os
 
-__settings_file__ = 'settings.json'
+__settings_file__ = os.path.dirname(CopterEmulator.__path__[0]) + \
+                    os.path.sep + 'CopterEmulator' + \
+                    os.path.sep + 'settings.json'
 
 
 class SimulationServer:

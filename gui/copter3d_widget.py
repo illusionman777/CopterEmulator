@@ -2,15 +2,15 @@ from PyQt5.QtWidgets import QOpenGLWidget
 from PyQt5.QtCore import Qt
 from pyquaternion import Quaternion
 from math import sin, cos, pi, acos
-from graphics.constructor3d import Constructor3D
-from graphics.calc_csm_vp_matrix import calc_csm_vp_matrix
-from graphics.set_text_buffer import set_text_buffer
-from graphics.obj_loader import OBJLoader
-import physicalmodel as model
+from CopterEmulator.graphics.constructor3d import Constructor3D
+from CopterEmulator.graphics.calc_csm_vp_matrix import calc_csm_vp_matrix
+from CopterEmulator.graphics.set_text_buffer import set_text_buffer
+from CopterEmulator.graphics.obj_loader import OBJLoader
+import CopterEmulator.physicalmodel as model
 import os
 import numpy
 # import time
-import extrafunctions as func
+import CopterEmulator.extrafunctions as func
 import sys
 import png
 import json
@@ -25,7 +25,7 @@ OpenGL.USE_ACCELERATE = True
 OpenGL.ERROR_ON_COPY = False
 OpenGL.WARN_ON_FORMAT_UNAVAILABLE = False
 from OpenGL.GL import *
-from graphics.shader import load_shaders
+from CopterEmulator.graphics.shader import load_shaders
 import ctypes
 
 

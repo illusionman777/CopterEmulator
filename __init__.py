@@ -5,6 +5,6 @@ from . import json_serializer
 from . import logger
 from . import simulation
 from . import study_module
-from .c_emulator import cEmulator
+from . import c_emulator
 
 name = "CopterEmulator"

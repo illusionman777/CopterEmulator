@@ -1,12 +1,13 @@
+import CopterEmulator
 from .copter_state import CopterState
 from pyquaternion import Quaternion
 import json
 import numpy
-import json_serializer
+import CopterEmulator.json_serializer as json_serializer
 import os
-import sys
 
-__logs_dir__ = os.path.dirname(os.path.realpath(sys.argv[0])) + \
+__logs_dir__ = os.path.dirname(CopterEmulator.__path__[0]) + \
+               os.path.sep + 'CopterEmulator' + \
                os.path.sep + 'logs' + os.path.sep
 
 

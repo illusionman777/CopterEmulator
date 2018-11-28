@@ -3,9 +3,9 @@ from PyQt5.QtWidgets import QMainWindow, QDesktopWidget, QTabWidget, QWidget, \
                             QApplication, QSizePolicy, QAction, QToolBar
 from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt, QSize
-from logger import Logger, CopterState
+from CopterEmulator.logger import Logger, CopterState
 from pyquaternion import Quaternion
-import gui
+import CopterEmulator.gui as gui
 from .plot_widget import PlotWidget
 import os
 import pyqtgraph as pg

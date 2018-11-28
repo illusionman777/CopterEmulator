@@ -6,7 +6,7 @@ from .sim_settings_widget import SimSettingsWidget
 from .sim_settings_start_widget import SimSettingsStartWidget
 from .copter3d_widget import Copter3DWidget
 
-import physicalmodel as model
+import CopterEmulator.physicalmodel as model
 
 
 class SimSettingsTabWidget(QWidget):

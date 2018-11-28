@@ -1,18 +1,20 @@
-import c_emulator
+import CopterEmulator
+from CopterEmulator import c_emulator
 from .logger_process import logger_process
 from pyquaternion import Quaternion
-import json_serializer
+import CopterEmulator.json_serializer as json_serializer
 import copy
 import multiprocessing
 import random
 import math
 import os
-import sys
 import numpy as np
 
-__settings_file__ = os.path.dirname(os.path.realpath(sys.argv[0])) + \
+__settings_file__ = os.path.dirname(CopterEmulator.__path__[0]) + \
+                    os.path.sep + 'CopterEmulator' + \
                     os.path.sep + 'settings.json'
-__logs_dir__ = os.path.dirname(os.path.realpath(sys.argv[0])) + \
+__logs_dir__ = os.path.dirname(CopterEmulator.__path__[0]) + \
+               os.path.sep + 'CopterEmulator' + \
                os.path.sep + 'logs' + os.path.sep
 
 

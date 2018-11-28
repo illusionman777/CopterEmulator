@@ -1,4 +1,4 @@
-from logger import Logger
+from CopterEmulator.logger import Logger
 
 
 def logger_process(copter, settings, receive_conn, stop_event, running_event, em_stopped_event):

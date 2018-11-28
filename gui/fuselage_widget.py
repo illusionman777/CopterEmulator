@@ -6,7 +6,7 @@ from PyQt5.QtCore import Qt, pyqtSignal
 from . import main_window
 from math import pi, pow, sqrt, sin, cos, tan, acos, fabs
 import numpy
-import physicalmodel as model
+import CopterEmulator.physicalmodel as model
 
 
 class FuselageWidget(QWidget):

@@ -1,6 +1,6 @@
 from .array_shift import array_shift
-from gui.plot_widget import PlotWidget
-from logger import CopterState
+from CopterEmulator.gui.plot_widget import PlotWidget
+from CopterEmulator.logger import CopterState
 import pyqtgraph as pg
 import numpy as py
 

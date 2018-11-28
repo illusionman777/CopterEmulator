@@ -1,5 +1,5 @@
 import time
-import c_emulator
+import CopterEmulator.c_emulator as c_emulator
 
 
 def emulator_process(copter, settings, receive_conn, controller_conn, logger_conn, graphics_conn,
