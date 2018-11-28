@@ -1,0 +1,86 @@
+{
+    "<class 'CopterEmulator.gui.settings.Settings'>": {
+        "_current_copter": "None",
+        "controller_freq": 1,
+        "dest_pos": {
+            "<class 'numpy.ndarray'>": [
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        "dest_q": {
+            "<class 'pyquaternion.quaternion.Quaternion'>": [
+                1.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        "dt": 0.1,
+        "graphics_enabled": true,
+        "ground_collision": true,
+        "ground_level": 0.0,
+        "hover_mod_on_start": false,
+        "log_enabled": true,
+        "log_file": "None",
+        "log_inf": true,
+        "log_time": 1,
+        "real_time_syncr": true,
+        "start_state": {
+            "<class 'CopterEmulator.logger.copter_state.CopterState'>": {
+                "engines_state": [],
+                "fuselage_state": {
+                    "<class 'CopterEmulator.logger.fuselage_props.FuselageProps'>": {
+                        "acel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "angular_acel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "angular_vel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "pos_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "rot_q": {
+                            "<class 'numpy.ndarray'>": [
+                                1.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "velocity_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                },
+                "t": 0.0
+            }
+        },
+        "vert_syncr": true,
+        "view3d_enabled": true
+    }
+}

@@ -1,0 +1,612 @@
+{
+    "<class 'CopterEmulator.physicalmodel.copter.Copter'>": {
+        "_angle_fus_engine": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "_distance_fus_engine_mc": [
+            0.25,
+            0.25,
+            0.25,
+            0.25
+        ],
+        "_equal_engines": true,
+        "_height_fus_engine_mc": [
+            0.02,
+            0.02,
+            0.02,
+            0.02
+        ],
+        "_num_of_engines": 4,
+        "_vector_fus_engine_mc": {
+            "<class 'list'>": [
+                {
+                    "<class 'numpy.ndarray'>": [
+                        0.1767766952966369,
+                        0.1767766952966369,
+                        0.02
+                    ]
+                },
+                {
+                    "<class 'numpy.ndarray'>": [
+                        -0.17677669529663687,
+                        0.1767766952966369,
+                        0.02
+                    ]
+                },
+                {
+                    "<class 'numpy.ndarray'>": [
+                        -0.17677669529663692,
+                        -0.17677669529663687,
+                        0.02
+                    ]
+                },
+                {
+                    "<class 'numpy.ndarray'>": [
+                        0.17677669529663684,
+                        -0.17677669529663692,
+                        0.02
+                    ]
+                }
+            ]
+        },
+        "aero_square": 1.0,
+        "drag_coef": {
+            "<class 'numpy.ndarray'>": [
+                0.01,
+                0.01,
+                0.2
+            ]
+        },
+        "engines": {
+            "<class 'list'>": [
+                {
+                    "<class 'CopterEmulator.physicalmodel.engine.Engine'>": {
+                        "_current_power": 0.0,
+                        "_current_pwm": 0.0,
+                        "acel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "angular_acel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "angular_vel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "blade_air_force": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "blade_air_moment": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "blade_coef_alpha": 0.8,
+                        "blade_coef_beta": 1.0,
+                        "blade_diameter": 0.2,
+                        "blade_dir": "counterclockwise",
+                        "drive_moment": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "inertia_moment": {
+                            "<class 'numpy.ndarray'>": [
+                                [
+                                    0.01,
+                                    0.0,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.01,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.0,
+                                    0.02
+                                ]
+                            ]
+                        },
+                        "mass": 0.1,
+                        "max_drive_moment": 5.0,
+                        "max_power": 110.0,
+                        "max_pwm": 1024.0,
+                        "pos_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "rot_q": {
+                            "<class 'pyquaternion.quaternion.Quaternion'>": [
+                                1.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "rot_q_diff": {
+                            "<class 'pyquaternion.quaternion.Quaternion'>": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "rotation_dir": "counterclockwise",
+                        "vel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                },
+                {
+                    "<class 'CopterEmulator.physicalmodel.engine.Engine'>": {
+                        "_current_power": 0.0,
+                        "_current_pwm": 0.0,
+                        "acel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "angular_acel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "angular_vel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "blade_air_force": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "blade_air_moment": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "blade_coef_alpha": 0.8,
+                        "blade_coef_beta": 1.0,
+                        "blade_diameter": 0.2,
+                        "blade_dir": "clockwise",
+                        "drive_moment": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "inertia_moment": {
+                            "<class 'numpy.ndarray'>": [
+                                [
+                                    0.01,
+                                    0.0,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.01,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.0,
+                                    0.02
+                                ]
+                            ]
+                        },
+                        "mass": 0.1,
+                        "max_drive_moment": 5.0,
+                        "max_power": 110.0,
+                        "max_pwm": 1024.0,
+                        "pos_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "rot_q": {
+                            "<class 'pyquaternion.quaternion.Quaternion'>": [
+                                1.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "rot_q_diff": {
+                            "<class 'pyquaternion.quaternion.Quaternion'>": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "rotation_dir": "clockwise",
+                        "vel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                },
+                {
+                    "<class 'CopterEmulator.physicalmodel.engine.Engine'>": {
+                        "_current_power": 0.0,
+                        "_current_pwm": 0.0,
+                        "acel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "angular_acel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "angular_vel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "blade_air_force": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "blade_air_moment": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "blade_coef_alpha": 0.8,
+                        "blade_coef_beta": 1.0,
+                        "blade_diameter": 0.2,
+                        "blade_dir": "counterclockwise",
+                        "drive_moment": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "inertia_moment": {
+                            "<class 'numpy.ndarray'>": [
+                                [
+                                    0.01,
+                                    0.0,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.01,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.0,
+                                    0.02
+                                ]
+                            ]
+                        },
+                        "mass": 0.1,
+                        "max_drive_moment": 5.0,
+                        "max_power": 110.0,
+                        "max_pwm": 1024.0,
+                        "pos_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "rot_q": {
+                            "<class 'pyquaternion.quaternion.Quaternion'>": [
+                                1.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "rot_q_diff": {
+                            "<class 'pyquaternion.quaternion.Quaternion'>": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "rotation_dir": "counterclockwise",
+                        "vel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                },
+                {
+                    "<class 'CopterEmulator.physicalmodel.engine.Engine'>": {
+                        "_current_power": 0.0,
+                        "_current_pwm": 0.0,
+                        "acel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "angular_acel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "angular_vel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "blade_air_force": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "blade_air_moment": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "blade_coef_alpha": 0.8,
+                        "blade_coef_beta": 1.0,
+                        "blade_diameter": 0.2,
+                        "blade_dir": "clockwise",
+                        "drive_moment": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "inertia_moment": {
+                            "<class 'numpy.ndarray'>": [
+                                [
+                                    0.01,
+                                    0.0,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.01,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.0,
+                                    0.02
+                                ]
+                            ]
+                        },
+                        "mass": 0.1,
+                        "max_drive_moment": 5.0,
+                        "max_power": 110.0,
+                        "max_pwm": 1024.0,
+                        "pos_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "rot_q": {
+                            "<class 'pyquaternion.quaternion.Quaternion'>": [
+                                1.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "rot_q_diff": {
+                            "<class 'pyquaternion.quaternion.Quaternion'>": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "rotation_dir": "clockwise",
+                        "vel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "fus_engine_q": {
+            "<class 'list'>": [
+                {
+                    "<class 'pyquaternion.quaternion.Quaternion'>": [
+                        1.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                {
+                    "<class 'pyquaternion.quaternion.Quaternion'>": [
+                        1.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                {
+                    "<class 'pyquaternion.quaternion.Quaternion'>": [
+                        1.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                {
+                    "<class 'pyquaternion.quaternion.Quaternion'>": [
+                        1.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                }
+            ]
+        },
+        "fuselage": {
+            "<class 'CopterEmulator.physicalmodel.physicalobject.PhysicalObject'>": {
+                "acel_v": {
+                    "<class 'numpy.ndarray'>": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                "angular_acel_v": {
+                    "<class 'numpy.ndarray'>": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                "angular_vel_v": {
+                    "<class 'numpy.ndarray'>": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                "inertia_moment": {
+                    "<class 'numpy.ndarray'>": [
+                        [
+                            0.1,
+                            0.0,
+                            0.0
+                        ],
+                        [
+                            0.0,
+                            0.1,
+                            0.0
+                        ],
+                        [
+                            0.0,
+                            0.0,
+                            0.2
+                        ]
+                    ]
+                },
+                "mass": 1.0,
+                "pos_v": {
+                    "<class 'numpy.ndarray'>": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                "rot_q": {
+                    "<class 'pyquaternion.quaternion.Quaternion'>": [
+                        1.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                "rot_q_diff": {
+                    "<class 'pyquaternion.quaternion.Quaternion'>": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                "vel_v": {
+                    "<class 'numpy.ndarray'>": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                }
+            }
+        },
+        "moment_coef": {
+            "<class 'numpy.ndarray'>": [
+                0.1,
+                0.1,
+                0.1
+            ]
+        },
+        "name": "Test",
+        "symmetry": true
+    }
+}
