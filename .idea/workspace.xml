@@ -157,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543444232755</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="json files fix">
+      <created>1543444601228</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1543444601228</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -169,7 +176,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -227,7 +234,8 @@
     <MESSAGE value="Added reward function" />
     <MESSAGE value="Bug fix" />
     <MESSAGE value="Import modules fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Import modules fix" />
+    <MESSAGE value="json files fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="json files fix" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/graphics/setup.py" />

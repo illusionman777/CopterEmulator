@@ -5,7 +5,9 @@ from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt, QSize
 from CopterEmulator.logger import Logger, CopterState
 from pyquaternion import Quaternion
-import CopterEmulator.gui as gui
+from .settings import Settings
+from .qrangeslider import QRangeSlider
+from .copter3d_widget import Copter3DWidget
 from .plot_widget import PlotWidget
 import os
 import pyqtgraph as pg
@@ -44,7 +46,7 @@ class LogWindow(QMainWindow):
         self.copter = None
         self.dest_pos = None
         self.dest_q = None
-        self.settings = gui.Settings()
+        self.settings = Settings()
         self.log_data = Logger.load_log(log_name, self)
         self.start_index = 0
         self.end_index = self.log_data.shape[1] - 1
@@ -82,7 +84,7 @@ class LogWindow(QMainWindow):
         pg.setConfigOption('foreground', 'k')
         pg.setConfigOption('background', 'w')
 
-        view3d_tab = gui.Copter3DWidget(self)
+        view3d_tab = Copter3DWidget(self)
         view3d_tab.setObjectName("view3d_tab")
         graphics_tbr.addTab(view3d_tab, "3D view")
 
@@ -239,7 +241,7 @@ class LogWindow(QMainWindow):
         tb_iconsize = QSize(50, 50)
         control_tlbr.setIconSize(tb_iconsize)
 
-        slider = gui.QRangeSlider()
+        slider = QRangeSlider()
         slider.setObjectName('slider')
         slider.setFixedHeight(25)
         slider.setMin(int(self.log_data[0, 0]))
@@ -498,7 +500,7 @@ class LogWindow(QMainWindow):
         self.start_act.setEnabled(False)
         self.pause_act.setEnabled(True)
         self.stop_act.setEnabled(True)
-        slider = self.findChild(gui.QRangeSlider, 'slider')
+        slider = self.findChild(QRangeSlider, 'slider')
         slider.setEnabled(False)
         self.video_running = True
         self.running_event.set()
@@ -524,7 +526,7 @@ class LogWindow(QMainWindow):
         self.stop_act.setEnabled(False)
         self.start_act.setEnabled(True)
         self.pause_act.setEnabled(False)
-        slider = self.findChild(gui.QRangeSlider, 'slider')
+        slider = self.findChild(QRangeSlider, 'slider')
         slider.setEnabled(True)
         self.video_running = False
         self.video_paused = False
@@ -538,7 +540,7 @@ class LogWindow(QMainWindow):
     def closeEvent(self, *args, **kwargs):
         if self.video_running:
             self.stop_video()
-        copter3d_w = self.findChildren(gui.Copter3DWidget)[0]
+        copter3d_w = self.findChildren(Copter3DWidget)[0]
         copter3d_w.cleanup_all()
         return
 
@@ -597,7 +599,7 @@ class LogWindow(QMainWindow):
             self.current_state.engines_state[i].rot_q[3] = self.log_data[7 + i, index][1]
             self.current_state.engines_state[i].current_pwm = self.log_data[7 + i, index][2]
         self.current_state.to_array()
-        copter3d_w = self.findChildren(gui.Copter3DWidget)[0]
+        copter3d_w = self.findChildren(Copter3DWidget)[0]
         copter3d_w.state = self.current_state
         copter3d_w.update()
         return
