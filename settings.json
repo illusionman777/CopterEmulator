@@ -1,0 +1,289 @@
+{
+    "<class 'CopterEmulator.gui.settings.Settings'>": {
+        "_current_copter": "None",
+        "controller_freq": 50,
+        "dest_pos": {
+            "<class 'numpy.ndarray'>": [
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        "dest_q": {
+            "<class 'pyquaternion.quaternion.Quaternion'>": [
+                1.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        "dt": 0.001,
+        "graphics_enabled": true,
+        "ground_collision": true,
+        "ground_level": 0.0,
+        "hover_mod_on_start": false,
+        "log_enabled": true,
+        "log_file": "None",
+        "log_inf": false,
+        "log_time": 600,
+        "real_time_syncr": true,
+        "start_state": {
+            "<class 'CopterEmulator.logger.copter_state.CopterState'>": {
+                "engines_state": {
+                    "<class 'list'>": [
+                        {
+                            "<class 'CopterEmulator.logger.engine_props.EngineProps'>": {
+                                "acel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "angular_acel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "angular_vel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "current_pow": 0.0,
+                                "current_pwm": 0,
+                                "pos_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "rot_q": {
+                                    "<class 'numpy.ndarray'>": [
+                                        1.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "rotation_dir": "counterclockwise",
+                                "velocity_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "<class 'CopterEmulator.logger.engine_props.EngineProps'>": {
+                                "acel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "angular_acel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "angular_vel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "current_pow": 0.0,
+                                "current_pwm": 0,
+                                "pos_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "rot_q": {
+                                    "<class 'numpy.ndarray'>": [
+                                        1.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "rotation_dir": "clockwise",
+                                "velocity_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "<class 'CopterEmulator.logger.engine_props.EngineProps'>": {
+                                "acel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "angular_acel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "angular_vel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "current_pow": 0.0,
+                                "current_pwm": 0,
+                                "pos_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "rot_q": {
+                                    "<class 'numpy.ndarray'>": [
+                                        1.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "rotation_dir": "counterclockwise",
+                                "velocity_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "<class 'CopterEmulator.logger.engine_props.EngineProps'>": {
+                                "acel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "angular_acel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "angular_vel_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "current_pow": 0.0,
+                                "current_pwm": 0,
+                                "pos_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "rot_q": {
+                                    "<class 'numpy.ndarray'>": [
+                                        1.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                },
+                                "rotation_dir": "clockwise",
+                                "velocity_v": {
+                                    "<class 'numpy.ndarray'>": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                "fuselage_state": {
+                    "<class 'CopterEmulator.logger.fuselage_props.FuselageProps'>": {
+                        "acel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "angular_acel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "angular_vel_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "pos_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "rot_q": {
+                            "<class 'numpy.ndarray'>": [
+                                1.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "velocity_v": {
+                            "<class 'numpy.ndarray'>": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                },
+                "t": 0.0
+            }
+        },
+        "vert_syncr": true,
+        "view3d_enabled": true
+    }
+}
