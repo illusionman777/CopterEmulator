@@ -35,6 +35,7 @@ class Environment:
         self.logger_out, self.logger_in = multiprocessing.Pipe(duplex=False)
 
         self.reset(0, log_enabled=False)
+        # self.func_prev = 0.0
         return
 
     def reset(self, num_of_simulation, log_enabled=True, max_pos=5.0, max_vel=10.0,
@@ -141,8 +142,8 @@ class Environment:
 
         quat_cur = Quaternion(self.state.fuselage_state.rot_q)
         quat_relative = quat_cur.conjugate * self.settings.dest_q
-        g = quat_cur.rotation_matrix * np.array([0.0, 0.0, -9.8062])
-        g = g[:, 2]
+        rot_matrix = quat_cur.rotation_matrix
+        g = np.dot(rot_matrix, np.array([0.0, 0.0, -9.8062]))
         acel_from_sensor = np.array(self.state.fuselage_state.angular_vel_v) + g
         observation = [
             self.state.fuselage_state.pos_v[0] - self.settings.dest_pos[0],
@@ -168,28 +169,110 @@ class Environment:
 
         reward = 0.0
         shaping = \
-            -200 * np.sqrt(observation[0] * observation[0] +
-                           observation[1] * observation[1] +
-                           observation[2] * observation[2]) \
-            - 100 * (1 - abs(observation[3]) +
-                     abs(observation[4]) +
-                     abs(observation[5]) +
-                     abs(observation[6])) \
-            - 100 * np.sqrt(observation[7] * observation[7] +
+            -7 * np.sqrt(observation[0] * observation[0] +
+                         observation[1] * observation[1] +
+                         observation[2] * observation[2]) \
+            - 1 * (1 - abs(observation[3]) + math.sqrt(1 - observation[3] * observation[3])) \
+            - 0.5 * np.sqrt(observation[7] * observation[7] +
                             observation[8] * observation[8] +
                             observation[9] * observation[9]) \
-            - 100 * np.sqrt(observation[10] * observation[10] +
+            - 1.7 * np.sqrt(observation[10] * observation[10] +
                             observation[11] * observation[11] +
                             observation[12] * observation[12])
+        reward = shaping / 10
+        '''
         if self.prev_shaping is not None:
             reward = shaping - self.prev_shaping
         self.prev_shaping = shaping
+        '''
+
         done = False
+        if np.sqrt(observation[0] * observation[0] + observation[1] * observation[1]
+                   + observation[2] * observation[2]) < 0.01:
+            reward += 10
+
         if self.state.fuselage_state.pos_v[2] < self.settings.ground_level:
             done = True
+            reward -= 50
+
         if self.state.t > self.max_time:
             done = True
-        return [observation, reward, done]
+            reward += 5
+
+        kp = 200.0
+        kd = 700.0
+        kp_vert = 40.0
+        kd_vert = 100.0
+        # pwm_start = 500
+
+        direction_vec = np.dot(rot_matrix, np.array([0.0, 0.0, 1.0]))
+
+        if direction_vec[2] > 0:
+            pid_controller = 392 + kp_vert * (self.settings.dest_pos[2] - self.state.fuselage_state.pos_v[2]) - \
+                             kd_vert * self.state.fuselage_state.velocity_v[2]
+        else:
+            pid_controller = 392
+
+        pwm_force = [0.0, 0.0, 0.0, 0.0]
+        pwm_force[0] = pid_controller
+        pwm_force[1] = pid_controller
+        pwm_force[2] = pid_controller
+        pwm_force[3] = pid_controller
+
+        func_cur = (1 - abs(quat_relative[0]) + math.sqrt(1 - quat_relative[0] * quat_relative[0]))
+        moment = np.array([
+            quat_relative[1] * self.copter.engines[0].blade_coef_alpha * abs(self.copter.vector_fus_engine_mc[0][0]),
+            quat_relative[2] * self.copter.engines[0].blade_coef_alpha * abs(self.copter.vector_fus_engine_mc[0][1]),
+            quat_relative[3] * self.copter.engines[0].blade_coef_beta * self.copter.engines[0].blade_diameter
+        ])
+        moment_norm = np.linalg.norm(moment)
+        if moment_norm > 1e-10:
+            moment /= np.linalg.norm(moment)
+
+        angular_vel = np.array(self.state.fuselage_state.angular_vel_v)
+        angular_vel = np.linalg.norm(angular_vel)
+        ang_vel_sign = np.sign(
+            -self.state.fuselage_state.angular_vel_v[0] * quat_relative[1] -
+            self.state.fuselage_state.angular_vel_v[1] * quat_relative[2] -
+            self.state.fuselage_state.angular_vel_v[2] * quat_relative[3]
+        ) * np.sign(quat_relative[0])
+
+        if ang_vel_sign < 0:
+            pd_controller = kp * math.sqrt(func_cur / 2) - \
+                            kd * angular_vel * angular_vel
+        else:
+            pd_controller = kp * math.sqrt(func_cur / 2)
+
+        moment *= pd_controller
+        # self.func_prev = func_cur
+        power_current = [0.0, 0.0, 0.0, 0.0]
+        power_current[0] = pwm_force[0] * pwm_force[0] / self.copter.engines[0].max_pwm / self.copter.engines[0].max_pwm
+        power_current[1] = pwm_force[1] * pwm_force[1] / self.copter.engines[1].max_pwm / self.copter.engines[1].max_pwm
+        power_current[2] = pwm_force[2] * pwm_force[2] / self.copter.engines[2].max_pwm / self.copter.engines[2].max_pwm
+        power_current[3] = pwm_force[3] * pwm_force[3] / self.copter.engines[3].max_pwm / self.copter.engines[3].max_pwm
+
+        power_current[0] += np.sign(moment[0] - moment[1] - moment[2]) * \
+                            (moment[0] - moment[1] - moment[2]) ** 2 / (self.copter.engines[0].max_pwm ** 2)
+        power_current[1] += np.sign(moment[0] + moment[1] + moment[2]) * \
+                            (moment[0] + moment[1] + moment[2]) ** 2 / (self.copter.engines[1].max_pwm ** 2)
+        power_current[2] += np.sign(-moment[0] + moment[1] - moment[2]) * \
+                            (-moment[0] + moment[1] - moment[2]) ** 2 / (self.copter.engines[2].max_pwm ** 2)
+        power_current[3] += np.sign(-moment[0] - moment[1] + moment[2]) * \
+                            (-moment[0] - moment[1] + moment[2]) ** 2 / (self.copter.engines[3].max_pwm ** 2)
+
+        for i in range(len(power_current)):
+            if power_current[i] > 1.0:
+                power_current[i] = 1.0
+            if power_current[i] < 0:
+                power_current[i] = 0
+
+        pwm_current = [0.0, 0.0, 0.0, 0.0]
+        pwm_current[0] = round(math.sqrt(power_current[0]) * self.copter.engines[0].max_pwm)
+        pwm_current[1] = round(math.sqrt(power_current[1]) * self.copter.engines[1].max_pwm)
+        pwm_current[2] = round(math.sqrt(power_current[2]) * self.copter.engines[2].max_pwm)
+        pwm_current[3] = round(math.sqrt(power_current[3]) * self.copter.engines[3].max_pwm)
+
+        return [observation, pwm_current, reward, done]
 
     def __del__(self):
         if not self.logger_proc:
