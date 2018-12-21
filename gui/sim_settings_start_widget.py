@@ -264,11 +264,11 @@ class SimSettingsStartWidget(QWidget):
         elif sender_name.startswith("start_q_line"):
             i = int(sender_name[-1])
             self.settings.start_state.fuselage_state.rot_q[i] = sender_value
-            quat_norm = numpy.linalg.norm(
+            '''quat_norm = numpy.linalg.norm(
                 self.settings.start_state.fuselage_state.rot_q
             )
             if quat_norm > 1e-10:
-                self.settings.start_state.fuselage_state.rot_q /= quat_norm
+                self.settings.start_state.fuselage_state.rot_q /= quat_norm'''
         elif sender_name.startswith("start_vel_line"):
             i = int(sender_name[-1])
             self.settings.start_state.fuselage_state.velocity_v[i] = sender_value

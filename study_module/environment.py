@@ -105,7 +105,7 @@ class Environment:
         for i in range(3):
             self.settings.start_state.fuselage_state.pos_v[i] = 2 * (random.random() - 0.5) * self.max_pos + \
                                                                 self.settings.dest_pos[i]
-            self.settings.start_state.fuselage_state.rot_q[i] = random.random()
+            self.settings.start_state.fuselage_state.rot_q[i] = 2 * (random.random() - 0.5)
             self.settings.start_state.fuselage_state.velocity_v[i] = 2 * (random.random() - 0.5) * self.max_vel
             self.settings.start_state.fuselage_state.angular_vel_v[i] = 2 * (random.random() - 0.5) * \
                                                                         self.max_angular_vel
@@ -113,24 +113,31 @@ class Environment:
             self.settings.start_state.fuselage_state.pos_v[2] = random.random() * \
                                                                 (self.settings.ground_level + self.max_pos + 1.0)
         self.settings.start_state.fuselage_state.rot_q[3] = random.random()
-        self.settings.start_state.fuselage_state.rot_q /= math.sqrt(
+        quat_norm = math.sqrt(
             self.settings.start_state.fuselage_state.rot_q[0] ** 2 +
             self.settings.start_state.fuselage_state.rot_q[1] ** 2 +
             self.settings.start_state.fuselage_state.rot_q[2] ** 2 +
             self.settings.start_state.fuselage_state.rot_q[3] ** 2
         )
+        if quat_norm > 1e-10:
+            self.settings.start_state.fuselage_state.rot_q /= quat_norm
+        else:
+            self.settings.start_state.fuselage_state.rot_q = [1.0, 0.0, 0.0, 0.0]
+        engine_angular_vel = random.random() * self.max_engine_vel
         for i in range(self.copter.num_of_engines):
-            self.settings.start_state.engines_state[i].rot_q[0] = random.random()
-            self.settings.start_state.engines_state[i].rot_q[3] = random.random()
-            self.settings.start_state.engines_state[i].rot_q /= math.sqrt(
+            self.settings.start_state.engines_state[i].rot_q[0] = 2 * (random.random() - 0.5)
+            self.settings.start_state.engines_state[i].rot_q[3] = 2 * (random.random() - 0.5)
+            quat_norm = math.sqrt(
                 self.settings.start_state.engines_state[i].rot_q[0] ** 2 +
                 self.settings.start_state.engines_state[i].rot_q[1] ** 2 +
                 self.settings.start_state.engines_state[i].rot_q[2] ** 2 +
                 self.settings.start_state.engines_state[i].rot_q[3] ** 2
             )
-            self.settings.start_state.engines_state[i].angular_vel_v[2] = random.random() * self.max_engine_vel
-            if self.copter.engines[i].rotation_dir == "clockwise":
-                self.settings.start_state.engines_state[i].angular_vel_v[2] *= -1
+            if quat_norm > 1e-10:
+                self.settings.start_state.engines_state[i].rot_q /= quat_norm
+            else:
+                self.settings.start_state.engines_state[i].rot_q = [1.0, 0.0, 0.0, 0.0]
+            self.settings.start_state.engines_state[i].angular_vel_v[2] = engine_angular_vel
             self.settings.start_state.engines_state[i].current_pwm = random.randint(0, self.copter.engines[i].max_pwm)
         return
 
@@ -199,20 +206,10 @@ class Environment:
             done = True
             reward += 5
 
-        kp = 200.0
-        kd = 700.0
-        kp_vert = 40.0
-        kd_vert = 100.0
-        # pwm_start = 500
+        kp = 6.0
+        kd = 30.0
 
-        direction_vec = np.dot(rot_matrix, np.array([0.0, 0.0, 1.0]))
-
-        if direction_vec[2] > 0:
-            pid_controller = 392 + kp_vert * (self.settings.dest_pos[2] - self.state.fuselage_state.pos_v[2]) - \
-                             kd_vert * self.state.fuselage_state.velocity_v[2]
-        else:
-            pid_controller = 392
-
+        pid_controller = 450
         pwm_force = [0.0, 0.0, 0.0, 0.0]
         pwm_force[0] = pid_controller
         pwm_force[1] = pid_controller
@@ -220,57 +217,35 @@ class Environment:
         pwm_force[3] = pid_controller
 
         func_cur = (1 - abs(quat_relative[0]) + math.sqrt(1 - quat_relative[0] * quat_relative[0]))
-        moment = np.array([
-            quat_relative[1] * self.copter.engines[0].blade_coef_alpha * abs(self.copter.vector_fus_engine_mc[0][0]),
-            quat_relative[2] * self.copter.engines[0].blade_coef_alpha * abs(self.copter.vector_fus_engine_mc[0][1]),
-            quat_relative[3] * self.copter.engines[0].blade_coef_beta * self.copter.engines[0].blade_diameter
+        axis = np.array([
+            quat_relative[1],
+            quat_relative[2],
+            quat_relative[3]
         ])
-        moment_norm = np.linalg.norm(moment)
-        if moment_norm > 1e-10:
-            moment /= np.linalg.norm(moment)
+        if np.linalg.norm(axis) > 1e-14:
+            axis /= np.linalg.norm(axis)
+        moment = np.array([
+            axis[0] / self.copter.engines[0].blade_coef_alpha / abs(self.copter.vector_fus_engine_mc[0][0]),
+            axis[1] / self.copter.engines[0].blade_coef_alpha / abs(self.copter.vector_fus_engine_mc[0][1]),
+            axis[2] / self.copter.engines[0].blade_coef_beta / self.copter.engines[0].blade_diameter
+        ])
 
         angular_vel = np.array(self.state.fuselage_state.angular_vel_v)
-        angular_vel = np.linalg.norm(angular_vel)
-        ang_vel_sign = np.sign(
-            -self.state.fuselage_state.angular_vel_v[0] * quat_relative[1] -
-            self.state.fuselage_state.angular_vel_v[1] * quat_relative[2] -
-            self.state.fuselage_state.angular_vel_v[2] * quat_relative[3]
-        ) * np.sign(quat_relative[0])
-
-        if ang_vel_sign < 0:
-            pd_controller = kp * math.sqrt(func_cur / 2) - \
-                            kd * angular_vel * angular_vel
-        else:
-            pd_controller = kp * math.sqrt(func_cur / 2)
-
-        moment *= pd_controller
-        # self.func_prev = func_cur
-        power_current = [0.0, 0.0, 0.0, 0.0]
-        power_current[0] = pwm_force[0] * pwm_force[0] / self.copter.engines[0].max_pwm / self.copter.engines[0].max_pwm
-        power_current[1] = pwm_force[1] * pwm_force[1] / self.copter.engines[1].max_pwm / self.copter.engines[1].max_pwm
-        power_current[2] = pwm_force[2] * pwm_force[2] / self.copter.engines[2].max_pwm / self.copter.engines[2].max_pwm
-        power_current[3] = pwm_force[3] * pwm_force[3] / self.copter.engines[3].max_pwm / self.copter.engines[3].max_pwm
-
-        power_current[0] += np.sign(moment[0] - moment[1] - moment[2]) * \
-                            (moment[0] - moment[1] - moment[2]) ** 2 / (self.copter.engines[0].max_pwm ** 2)
-        power_current[1] += np.sign(moment[0] + moment[1] + moment[2]) * \
-                            (moment[0] + moment[1] + moment[2]) ** 2 / (self.copter.engines[1].max_pwm ** 2)
-        power_current[2] += np.sign(-moment[0] + moment[1] - moment[2]) * \
-                            (-moment[0] + moment[1] - moment[2]) ** 2 / (self.copter.engines[2].max_pwm ** 2)
-        power_current[3] += np.sign(-moment[0] - moment[1] + moment[2]) * \
-                            (-moment[0] - moment[1] + moment[2]) ** 2 / (self.copter.engines[3].max_pwm ** 2)
-
-        for i in range(len(power_current)):
-            if power_current[i] > 1.0:
-                power_current[i] = 1.0
-            if power_current[i] < 0:
-                power_current[i] = 0
+        angular_vel = np.dot(self.settings.dest_q.conjugate.rotation_matrix, angular_vel)
+        moment *= kp * func_cur
+        moment -= kd * angular_vel
 
         pwm_current = [0.0, 0.0, 0.0, 0.0]
-        pwm_current[0] = round(math.sqrt(power_current[0]) * self.copter.engines[0].max_pwm)
-        pwm_current[1] = round(math.sqrt(power_current[1]) * self.copter.engines[1].max_pwm)
-        pwm_current[2] = round(math.sqrt(power_current[2]) * self.copter.engines[2].max_pwm)
-        pwm_current[3] = round(math.sqrt(power_current[3]) * self.copter.engines[3].max_pwm)
+        pwm_current[0] = round(moment[0] - moment[1] - moment[2] + pid_controller)
+        pwm_current[1] = round(moment[0] + moment[1] + moment[2] + pid_controller)
+        pwm_current[2] = round(-moment[0] + moment[1] - moment[2] + pid_controller)
+        pwm_current[3] = round(-moment[0] - moment[1] + moment[2] + pid_controller)
+
+        for i in range(len(pwm_current)):
+            if pwm_current[i] > self.copter.engines[i].max_pwm:
+                pwm_current[i] = self.copter.engines[i].max_pwm
+            if pwm_current[i] < 0:
+                pwm_current[i] = 0
 
         return [observation, pwm_current, reward, done]
 

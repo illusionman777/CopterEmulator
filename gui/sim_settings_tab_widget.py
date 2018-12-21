@@ -7,6 +7,7 @@ from .sim_settings_start_widget import SimSettingsStartWidget
 from .copter3d_widget import Copter3DWidget
 
 import CopterEmulator.physicalmodel as model
+import numpy
 
 
 class SimSettingsTabWidget(QWidget):
@@ -102,6 +103,12 @@ class SimSettingsTabWidget(QWidget):
         return
 
     def _save_settings(self):
+        self.settings.dest_q = self.settings.dest_q.normalised
+        quat_norm = numpy.linalg.norm(
+            self.settings.start_state.fuselage_state.rot_q
+        )
+        if quat_norm > 1e-10:
+            self.settings.start_state.fuselage_state.rot_q /= quat_norm
         self.settings.save()
         save_act = self.findChild(QAction, 'save_act')
         save_act.setEnabled(False)
